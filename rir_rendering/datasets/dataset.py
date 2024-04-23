@@ -16,11 +16,8 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset
 
-from habitat.tasks.utils import (
-    cartesian_to_polar,
-    quaternion_from_coeff,
-    quaternion_rotate_vector,
-)
+from habitat.tasks.utils import cartesian_to_polar
+
 from habitat_sim.utils.common import quat_from_angle_axis, quat_from_coeffs, quat_to_angle_axis
 
 from rir_rendering.common.eval_metrics import calculate_drr_diff, calculate_rtX_diff
@@ -283,9 +280,9 @@ class UniformContextSamplerDataset(Dataset):
         """
         sweep_audio, fs = sf.read(self.sweep_audio_file_path, dtype='int16')
         if fs != self.rir_sampling_rate:
-            sweep_audio = librosa.resample(sweep_audio.astype("float32"), fs, self.rir_sampling_rate).astype("int16")
+            sweep_audio = librosa.resample(sweep_audio.astype("float32"), orig_sr=fs, target_sr=self.rir_sampling_rate).astype("int16")
 
-        self.sweep_audio = librosa.util.fix_length(sweep_audio, self.rir_sampling_rate)
+        self.sweep_audio = librosa.util.fix_length(sweep_audio, size=self.rir_sampling_rate)
 
     def _get_datapoint(self, item_):
         """
@@ -542,7 +539,7 @@ class UniformContextSamplerDataset(Dataset):
                                                   np.array([0, 1, 0]))
 
         agent_position_xyz = np.array(list(scene_graph.nodes[current_pose[0]]["point"]), dtype=np.float32)
-        agent_position_xyz = quaternion_rotate_vector(
+        agent_position_xyz = quat_rotate_vector(
             rotation_world_ref.inverse(), agent_position_xyz - ref_position_xyz
         )
 
@@ -553,7 +550,7 @@ class UniformContextSamplerDataset(Dataset):
                                                     np.array([0, 1, 0]))
         # next 2 lines compute relative rotation in the counter-clockwise direction, i.e. -z to -x
         # rotation_world_agent.inverse() * rotation_world_ref = rotation_world_agent - rotation_world_ref
-        heading_vector = quaternion_rotate_vector(rotation_world_agent.inverse() * rotation_world_ref,
+        heading_vector = quat_rotate_vector(rotation_world_agent.inverse() * rotation_world_ref,
                                                   np.array([0, 0, -1]))
         agent_heading = cartesian_to_polar(-heading_vector[2], heading_vector[0])[1]
 

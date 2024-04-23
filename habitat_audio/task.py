@@ -21,10 +21,8 @@ from habitat.utils.visualizations import fog_of_war, maps
 
 from habitat.sims.habitat_simulator.actions import HabitatSimActions
 
-from habitat.tasks.utils import (
-    cartesian_to_polar,
-    quaternion_rotate_vector
-)
+from habitat.tasks.utils import cartesian_to_polar
+from habitat_sim.utils.common import quat_from_coeffs, quat_rotate_vector
 
 cv2 = try_cv2_import()
 
@@ -142,7 +140,7 @@ class PoseSensor(Sensor):
     def _quat_to_xy_heading(self, quat):
         direction_vector = np.array([0, 0, -1])
 
-        heading_vector = quaternion_rotate_vector(quat, direction_vector)
+        heading_vector = quat_rotate_vector(quat, direction_vector)
 
         phi = cartesian_to_polar(-heading_vector[2], heading_vector[0])[1]
         return np.array([phi], dtype=np.float32)
@@ -157,12 +155,12 @@ class PoseSensor(Sensor):
         agent_state = self._sim.get_agent_state()
 
         origin = np.array(episode.start_position, dtype=np.float32)
-        rotation_world_start = quaternion_from_coeff(episode.start_rotation)
+        rotation_world_start = quat_from_coeffs(episode.start_rotation)
 
         agent_position_xyz = agent_state.position
         rotation_world_agent = agent_state.rotation
 
-        agent_position_xyz = quaternion_rotate_vector(
+        agent_position_xyz = quat_rotate_vector(
             rotation_world_start.inverse(), agent_position_xyz - origin
         )
 

@@ -51,21 +51,9 @@ SCENE_SPLITS = {
         {
             'train':
                 ['sT4fr6TAbpF', 'E9uDoFAP3SH', 'VzqfbhrpDEA', 'kEZ7cmS4wCh', '29hnd4uzFmX', 'ac26ZMwG7aT',
-                 's8pcmisQ38h', 'rPc6DW4iMge', 'EDJbREhghzL', 'mJXqzFtmKg4', 'B6ByNegPMKs', 'JeFG25nYj2p',
-                 '82sE5b5pLXE', 'D7N2EKCX4Sj', '7y3sRwLe3Va', '5LpN3gDmAk7', 'gTV8FGcVJC9', 'ur6pFq6Qu1A',
-                 'qoiz87JEwZ2', 'PuKPg4mmafe', 'VLzqgDo317F', 'aayBHfsNo7d', 'JmbYfDe2QKZ', 'XcA2TqTSSAj',
-                 '8WUmhLawc2A', 'sKLMLpTHeUy', 'r47D5H71a5s', 'Uxmj2M2itWa', 'Pm6F8kyY3z2', 'p5wJjkQkbXX',
-                 '759xd9YjKW5', 'JF19kD82Mey', 'V2XKFyX4ASd', '1LXtFkjw3qL', '17DRP5sb8fy', '5q7pvUzZiYa',
-                 'VVfe2KiqLaN', 'Vvot9Ly1tCj', 'ULsKaCPVFJR', 'D7G3Y4RVNrH', 'uNb9QFRL6hY', 'ZMojNkEp431',
-                 '2n8kARJN3HM', 'vyrNrziPKCB', 'e9zR4mvMWw7', 'r1Q1Z4BcV1o', 'PX4nDJXEHrG', 'YmJkqBEsHnH',
-                 'b8cTxDM8gDG', 'GdvgFV5R1Z5', 'pRbA3pwrgk9', 'jh4fc5c5qoQ', '1pXnuDYAj8r', 'S9hNv5qa7GM',
-                 'VFuaQ6m2Qom', 'cV4RVeZvu5T', 'SN83YJsR3w2',],
+                 's8pcmisQ38h', 'rPc6DW4iMge', 'EDJbREhghzL', 'mJXqzFtmKg4', 'B6ByNegPMKs', 'JeFG25nYj2p',],
             'unseen_eval':
-                ['2azQ1b91cZZ', '5ZKStnWn8Zo', '8194nk5LbLH', 'ARNzJeq3xxb', 'EU6Fwq7SyZv', 'QUCTc6BB5sX',
-                 'TbHJrupSAjP', 'UwV83HsGsw3', 'Vt2qJdWjCF2', 'WYY7iVyf5p8', 'X7HyMhZNoso', 'YFuZgdQ5vWj',
-                 'Z6MFQCViBuw', 'fzynW3qQPVF', 'gYvKGZ5eRqb', 'gxdoqLR6rwA', 'jtcxE69GiFV', 'oLBMNvg9in8',
-                 'pLe4wQe7qrG', 'pa4otMbVnkk', 'q9vSo1VnCiC', 'rqfALeAoiTq', 'wc2JMjhGNzB', 'x8F5xyUWy9e',
-                 'yqstnuAEVhm', 'zsNo4HB9uLZ'],
+                ['2azQ1b91cZZ', '5ZKStnWn8Zo', '8194nk5LbLH', 'ARNzJeq3xxb', 'EU6Fwq7SyZv', 'QUCTc6BB5sX',],
         },
 }
 

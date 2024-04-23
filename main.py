@@ -33,7 +33,7 @@ def main():
         "--exp-config",
         type=str,
         # required=True,
-        default='rir_rendering/config/test/uniform_context_sampler.yaml',
+        default='rir_rendering/config/train/uniform_context_sampler.yaml',
         help="path to config yaml containing info about experiment",
     )
     parser.add_argument(

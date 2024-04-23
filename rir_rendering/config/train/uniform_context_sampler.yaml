@@ -6,10 +6,10 @@ TRAINER_NAME: "uniform_context_sampler"
 NUM_PROCESSES: 1
 
 UniformContextSampler:
-  num_epochs: 60000
+  num_epochs: 10
 
   batch_size: 24
-  num_workers: 24
+  num_workers: 2
 
   num_datapoints_per_scene_train: 210
   num_datapoints_per_scene_eval: 14

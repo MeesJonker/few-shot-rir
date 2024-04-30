@@ -1,5 +1,4 @@
 argparse==1.1
-logging==0.5.1.2
 tensorflow==2.6.2
 torch==1.4.0
 attrs==20.3.0
@@ -10,10 +9,10 @@ librosa==0.9.1
 numpy==1.19.5
 networkx==2.2
 scipy==1.5.4
-gym==0.10.9
+gym==0.22.0
 cv2==4.5.1
 tqdm==4.56.0
-pyroomacoustics==0.4.2
+pyroomacoustics==0.7.3
 SoundFile==0.10.3.post1
 Pillow==8.1.0
 scikit-image==0.16.2

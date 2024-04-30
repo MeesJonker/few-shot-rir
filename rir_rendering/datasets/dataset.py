@@ -18,7 +18,7 @@ from torch.utils.data import Dataset
 
 from habitat.tasks.utils import cartesian_to_polar
 
-from habitat_sim.utils.common import quat_from_angle_axis, quat_from_coeffs, quat_to_angle_axis
+from habitat_sim.utils.common import quat_from_angle_axis, quat_from_coeffs, quat_to_angle_axis, quat_rotate_vector
 
 from rir_rendering.common.eval_metrics import calculate_drr_diff, calculate_rtX_diff
 
@@ -45,10 +45,9 @@ SCENE_SPLITS = {
     "mp3d":
         {
             'train':
-                ['sT4fr6TAbpF', 'E9uDoFAP3SH', 'VzqfbhrpDEA', 'kEZ7cmS4wCh', '29hnd4uzFmX', 'ac26ZMwG7aT',
-                 's8pcmisQ38h', 'rPc6DW4iMge', 'EDJbREhghzL', 'mJXqzFtmKg4', 'B6ByNegPMKs', 'JeFG25nYj2p',],
+                ['VzqfbhrpDEA', '17DRP5sb8fy'],
             'unseen_eval':
-                ['2azQ1b91cZZ', '5ZKStnWn8Zo', '8194nk5LbLH', 'ARNzJeq3xxb', 'EU6Fwq7SyZv', 'QUCTc6BB5sX',],
+                ['TbHJrupSAjP'],
         },
 }
 
@@ -123,37 +122,37 @@ class UniformContextSamplerDataset(Dataset):
                 assert arbitrary_rir_seen_env_eval_query_pose_idxs_path is not None
                 assert os.path.isfile(arbitrary_rir_seen_env_eval_query_pose_idxs_path)
                 with open(arbitrary_rir_seen_env_eval_query_pose_idxs_path, "rb") as fi:
-                    self.arbitrary_rir_query_pose_idxs_from_disk = pickle.load(fi)
+                    self.arbitrary_rir_query_pose_idxs_from_disk = [x for i, x in enumerate(pickle.load(fi)) if i in [17,  44,  67, 123, 124, 142, 147, 149, 153, 214, 239, 284, 289, 311, 329, 333, 348, 351, 359, 373, 403, 413, 422, 429, 435, 461, 512, 553, 611, 618, 633, 662, 664, 681, 709, 727, 777, 788]]
 
                 arbitrary_rir_seen_env_eval_scene_names_path = self.env_cfg.ARBITRARY_RIR_SEEN_ENV_EVAL_SCENE_NAMES_PATH
                 assert arbitrary_rir_seen_env_eval_scene_names_path is not None
                 assert os.path.isfile(arbitrary_rir_seen_env_eval_scene_names_path)
                 with open(arbitrary_rir_seen_env_eval_scene_names_path, "rb") as fi:
-                    self.arbitrary_rir_scene_names_from_disk = pickle.load(fi)
+                    self.arbitrary_rir_scene_names_from_disk = [x for i, x in enumerate(pickle.load(fi)) if i in [17,  44,  67, 123, 124, 142, 147, 149, 153, 214, 239, 284, 289, 311, 329, 333, 348, 351, 359, 373, 403, 413, 422, 429, 435, 461, 512, 553, 611, 618, 633, 662, 664, 681, 709, 727, 777, 788]]
 
                 arbitrary_rir_seen_env_eval_query_pose_subgraph_idxs_path = self.env_cfg.ARBITRARY_RIR_SEEN_ENV_EVAL_QUERY_POSE_SUBGRAPH_IDXS_PATH
                 assert arbitrary_rir_seen_env_eval_query_pose_subgraph_idxs_path is not None
                 assert os.path.isfile(arbitrary_rir_seen_env_eval_query_pose_subgraph_idxs_path)
                 with open(arbitrary_rir_seen_env_eval_query_pose_subgraph_idxs_path, "rb") as fi:
-                    self.arbitrary_rir_query_pose_subgraph_idxs_from_disk = pickle.load(fi)
+                    self.arbitrary_rir_query_pose_subgraph_idxs_from_disk = [x for i, x in enumerate(pickle.load(fi)) if i in [17,  44,  67, 123, 124, 142, 147, 149, 153, 214, 239, 284, 289, 311, 329, 333, 348, 351, 359, 373, 403, 413, 422, 429, 435, 461, 512, 553, 611, 618, 633, 662, 664, 681, 709, 727, 777, 788]]
             elif split == "unseen_eval":
                 arbitrary_rir_unseen_env_eval_query_pose_idxs_path = self.env_cfg.ARBITRARY_RIR_UNSEEN_ENV_EVAL_QUERY_POSE_IDXS_PATH
                 assert arbitrary_rir_unseen_env_eval_query_pose_idxs_path is not None
                 assert os.path.isfile(arbitrary_rir_unseen_env_eval_query_pose_idxs_path)
                 with open(arbitrary_rir_unseen_env_eval_query_pose_idxs_path, "rb") as fi:
-                    self.arbitrary_rir_query_pose_idxs_from_disk = pickle.load(fi)
+                    self.arbitrary_rir_query_pose_idxs_from_disk = [x for i, x in enumerate(pickle.load(fi)) if i in [0,   6,  45,  48,  61, 107, 123, 126, 153, 161, 167, 173, 189, 198, 218, 268, 273, 284, 342]]
 
                 arbitrary_rir_unseen_env_val_scene_names_path = self.env_cfg.ARBITRARY_RIR_UNSEEN_ENV_EVAL_SCENE_NAMES_PATH
                 assert arbitrary_rir_unseen_env_val_scene_names_path is not None
                 assert os.path.isfile(arbitrary_rir_unseen_env_val_scene_names_path)
                 with open(arbitrary_rir_unseen_env_val_scene_names_path, "rb") as fi:
-                    self.arbitrary_rir_scene_names_from_disk = pickle.load(fi)
+                    self.arbitrary_rir_scene_names_from_disk = [x for i, x in enumerate(pickle.load(fi)) if i in [0,   6,  45,  48,  61, 107, 123, 126, 153, 161, 167, 173, 189, 198, 218, 268, 273, 284, 342]]
 
                 arbitrary_rir_unseen_env_val_query_pose_subgraph_idxs_path = self.env_cfg.ARBITRARY_RIR_UNSEEN_ENV_EVAL_QUERY_POSE_SUBGRAPH_IDXS_PATH
                 assert arbitrary_rir_unseen_env_val_query_pose_subgraph_idxs_path is not None
                 assert os.path.isfile(arbitrary_rir_unseen_env_val_query_pose_subgraph_idxs_path)
                 with open(arbitrary_rir_unseen_env_val_query_pose_subgraph_idxs_path, "rb") as fi:
-                    self.arbitrary_rir_query_pose_subgraph_idxs_from_disk = pickle.load(fi)
+                    self.arbitrary_rir_query_pose_subgraph_idxs_from_disk = [x for i, x in enumerate(pickle.load(fi)) if i in [0,   6,  45,  48,  61, 107, 123, 126, 153, 161, 167, 173, 189, 198, 218, 268, 273, 284, 342]]
 
             if self.load_context_from_disk:
                 if split == "seen_eval":
@@ -417,7 +416,7 @@ class UniformContextSamplerDataset(Dataset):
                 if self.sim_cfg.DEPTH_SENSOR.NORMALIZE_DEPTH:
                     curr_context_entry_depth = self._normalize_depth(curr_context_entry_depth)
 
-                curr_context_entry_view = np.concatenate((curr_context_entry_rgb, curr_context_entry_depth), axis=-1)
+                curr_context_entry_view = np.concatenate((curr_context_entry_rgb, np.squeeze(curr_context_entry_depth, axis=-1)), axis=-1)
 
                 context_views_this_datapoint[context_idx] = curr_context_entry_view
 

@@ -50,10 +50,9 @@ SCENE_SPLITS = {
     "mp3d":
         {
             'train':
-                ['sT4fr6TAbpF', 'E9uDoFAP3SH', 'VzqfbhrpDEA', 'kEZ7cmS4wCh', '29hnd4uzFmX', 'ac26ZMwG7aT',
-                 's8pcmisQ38h', 'rPc6DW4iMge', 'EDJbREhghzL', 'mJXqzFtmKg4', 'B6ByNegPMKs', 'JeFG25nYj2p',],
+                ['VzqfbhrpDEA', '17DRP5sb8fy'],
             'unseen_eval':
-                ['2azQ1b91cZZ', '5ZKStnWn8Zo', '8194nk5LbLH', 'ARNzJeq3xxb', 'EU6Fwq7SyZv', 'QUCTc6BB5sX',],
+                ['TbHJrupSAjP'],
         },
 }
 

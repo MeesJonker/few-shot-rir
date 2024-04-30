@@ -8,11 +8,11 @@ NUM_PROCESSES: 1
 UniformContextSampler:
   num_epochs: 10
 
-  batch_size: 24
-  num_workers: 2
+  batch_size: 1
+  num_workers: 1
 
-  num_datapoints_per_scene_train: 210
-  num_datapoints_per_scene_eval: 14
+  num_datapoints_per_scene_train: 5
+  num_datapoints_per_scene_eval: 2
 
   lr: 1.0e-4 
   eps: 1.0e-5 
